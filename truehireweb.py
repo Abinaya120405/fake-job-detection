@@ -13,11 +13,14 @@ import re
 
 import pandas as pd
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import PassiveAggressiveClassifier
-from sklearn.preprocessing import LabelEncoder
+import joblib
+import os
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.pipeline import Pipeline
+
+# ── Pipeline modules (separate files in same folder / repo) ──────────────────
+import data_preprocessing as _dp   # Stage 1: preprocess()
+import tfidf_features      as _tf   # Stage 2: extract_features(), transform_single()
+import train_model         as _tm   # Stage 3: add_irrelevant_class()
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE CONFIG  (must be first Streamlit call)
